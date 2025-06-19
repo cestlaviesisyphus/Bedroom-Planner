@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Bedroom Layout Planner – v12.2</title>
-  <style>
+
+<!-- saved from url=(0052)https://cestlaviesisyphus.github.io/Bedroom-Planner/ -->
+<html lang="en"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Bedroom Layout Planner – v12.2.9</title>
+<style>
     /* ——— Layout & basic UI ——— */
     *{box-sizing:border-box}
     body{font-family:system-ui,sans-serif;display:flex;gap:1.5rem;padding:1rem;background:#f8fafc}
@@ -32,36 +32,62 @@
   </style>
 </head>
 <body>
-  <!-- ── Main column (canvas & global buttons) ── -->
-  <div style="display:flex;flex-direction:column;align-items:center;gap:.75rem">
-    <h1 style="font-size:1.25rem;margin:0;font-weight:600">Bedroom Layout Planner v12.2<br>(12 × 10 ft room • 45 × 24 in closet)</h1>
-    <canvas id="stage" width="720" height="720"></canvas>
-    <div style="display:flex;gap:.75rem">
-      <button id="savePng">Save PNG</button>
-      <button id="saveLayout">Save Layout</button>
-      <button id="loadLayout">Load Layout</button>
-      <input type="file" id="fileInput" accept="application/json" style="display:none" />
-    </div>
-  </div>
-
-  <!-- ── Side panel ── -->
-  <div id="panel">
-    <h2>Objects</h2>
-    <ul id="objList"></ul>
-    <button id="addObj">➕ Add Object</button>
-    <div id="spaceInfo">Calculating…</div>
-
-    <div id="edit">
-      <h2 style="font-size:1rem">Edit Selected</h2>
-      <label>Name <input id="nameInp"></label>
-      <label>Width (in) <input id="wInp" type="number" step="0.25"></label>
-      <label>Height (in) <input id="hInp" type="number" step="0.25"></label>
-      <label>Color <input id="colInp" type="color"></label>
-      <label>Transparency (α) <input id="alphaInp" type="range" min="0" max="1" step="0.05"></label>
-      <button id="delObj" style="background:#fecaca">🗑 Delete</button>
-    </div>
-  </div>
-
+<!-- ── Main column (canvas & global buttons) ── -->
+<div style="display:flex;flex-direction:column;align-items:center;gap:.75rem">
+<h1 style="font-size:1.25rem;margin:0;font-weight:600">Bedroom Layout Planner v12.2.9<br/>(12 × 10 ft room • 45 × 24 in closet)</h1>
+<div style="margin-bottom:.5rem; display:flex; gap:.5rem; align-items:center"><button id="zoomIn" title="Zoom In">+</button><button id="zoomOut" title="Zoom Out">−</button><button id="zoomReset" title="Reset Zoom">Reset</button></div><canvas height="720" id="stage" width="720"></canvas>
+<div style="display:flex;gap:.75rem">
+<button id="savePng">Save PNG</button>
+<button id="saveLayout">Save Layout</button>
+<button id="loadLayout">Load Layout</button>
+<input accept="application/json" id="fileInput" style="display:none" type="file"/>
+</div>
+</div>
+<!-- ── Side panel ── -->
+<div style="display:flex; gap:1rem; align-items:flex-start"><div style="display:flex;gap:1.5rem;align-items:flex-start"><div style="display:flex; gap:1rem; align-items:flex-start"><div id="panel">
+<h2>Objects</h2>
+<fieldset style="border:1px solid #cbd5e1; padding:.5rem; border-radius:.5rem; display:flex; flex-direction:column; gap:.35rem">
+<legend style="font-size:.85rem; color:#0f172a; font-weight:600">Measurement Tools</legend>
+<label style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:#0f172a">
+<input id="measureToggle" type="checkbox"/> Use Measurement Tool
+  </label>
+<small style="margin-left:1.5rem; font-size:.75rem; color:#475569">
+    Click two points to measure distance in inches &amp; feet.
+  </small>
+<label style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:#0f172a">
+<input id="walkwayToggle" type="checkbox"/> Enable Walkway Validator
+  </label>
+<label style="font-size:.8rem;color:#475569;display:flex;align-items:center;gap:.5rem">
+    Min Walkway Width (in): <input id="walkwayMin" style="width:60px" type="number" value="24"/>
+</label>
+<label style="display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:#475569">
+<input id="walkwayLiveToggle" type="checkbox"/> Show Walkway Issues While Dragging
+  </label><small style="margin-left:1.5rem; font-size:.75rem; color:#64748b">Walkway Validator must be enabled</small>
+</fieldset>
+<ul id="objList"><li class=""><div class="row"><span class="swatch" style="background: rgb(176, 196, 222);"></span>Twin XL Bed<button class="arrow" disabled="">↑</button><button class="arrow">↓</button></div><span class="dim">82×40″</span></li><li class=""><div class="row"><span class="swatch" style="background: rgb(222, 184, 135);"></span>Nightstand 1<button class="arrow">↑</button><button class="arrow">↓</button></div><span class="dim">16×22″</span></li><li class=""><div class="row"><span class="swatch" style="background: rgb(255, 228, 181);"></span>Long Dresser<button class="arrow">↑</button><button class="arrow">↓</button></div><span class="dim">20×70″</span></li><li class=""><div class="row"><span class="swatch" style="background: rgb(167, 243, 208);"></span>Computer Chair<button class="arrow">↑</button><button class="arrow">↓</button></div><span class="dim">27×27″</span></li><li class=""><div class="row"><span class="swatch" style="background: rgb(119, 113, 95);"></span>Computer Desk<button class="arrow">↑</button><button class="arrow">↓</button></div><span class="dim">46×22″</span></li><li class=""><div class="row"><span class="swatch" style="background: rgb(97, 187, 194);"></span>Stand Up Dresser<button class="arrow">↑</button><button class="arrow">↓</button></div><span class="dim">32.50×19.50″</span></li><li class=""><div class="row"><span class="swatch" style="background: rgb(167, 243, 208);"></span>Bookshelf<button class="arrow">↑</button><button class="arrow">↓</button></div><span class="dim">11.50×30″</span></li><li class=""><div class="row"><span class="swatch" style="background: rgb(167, 243, 208);"></span>Old Night<button class="arrow">↑</button><button class="arrow">↓</button></div><span class="dim">16×29″</span></li><li class=""><div class="row"><span class="swatch" style="background: rgb(167, 243, 208);"></span>Black Cube<button class="arrow">↑</button><button class="arrow">↓</button></div><span class="dim">12×16″</span></li><li class=""><div class="row"><span class="swatch" style="background: rgb(222, 184, 135);"></span>Nightstand 2<button class="arrow">↑</button><button class="arrow" disabled="">↓</button></div><span class="dim">22×16″</span></li></ul>
+<button id="addObj">➕ Add Object</button>
+<fieldset style="border:1px solid #cbd5e1; padding:.5rem; border-radius:.5rem; display:flex; flex-direction:column; gap:.35rem">
+<legend style="font-size:.85rem; color:#0f172a; font-weight:600">Object Tools</legend>
+<label style="font-size:.85rem;color:#0f172a;display:flex;align-items:center;gap:.5rem">
+<input checked="" id="gapToggle" type="checkbox"/> Show Gaps Between Objects
+</label><label style="font-size:.85rem;color:#0f172a;display:flex;align-items:center;gap:.5rem">
+<input checked="" id="noteToggle" type="checkbox"/> Show Object Notes
+</label><div style="margin-top: 0.25rem; display: flex; align-items: center; justify-content: center; gap: 0.4rem; font-size: 0.875rem;"><input id="lockObjects" type="checkbox"/><label for="lockObjects"> Lock Object Movement</label></div></fieldset>
+<div id="spaceInfo">Free space: 59.8 ft²  (8604 in²)</div>
+</div><div style="display:flex; flex-direction:column; gap:.75rem; align-items:flex-start"><div style="margin-top:.75rem; display:flex; gap:.5rem; padding:.5rem; background:#f1f5f9; border:1px solid #cbd5e1; border-radius:.5rem;"><button id="exportInventory" style="padding:.5rem; background:#2563eb; color:white; border:none; border-radius:4px; font-size:.85rem; cursor:pointer">Generate Inventory Sheet</button><button disabled="true" id="downloadInventory" style="padding:.5rem; background:#0f766e; color:white; border:none; border-radius:4px; font-size:.85rem; cursor:pointer">Export Inventory as Text</button></div><div id="inventorySheet" style="margin-top:1rem; display:none; max-height:180px; overflow:auto; border:1px solid #e2e8f0; border-radius:4px; padding:.25rem;"></div></div></div><div style="display:flex;flex-direction:column;gap:1rem;align-items:flex-start"><div id="edit" style="display:none; flex-direction:column; gap:.5rem; border:1px solid #e2e8f0; border-radius:.5rem; padding:.75rem; min-width:220px">
+<h2 style="font-size:1rem">Edit Selected</h2>
+<label>Name <input id="nameInp"/></label>
+<label>Width (in) <input id="wInp" step="0.25" type="number"/></label>
+<label>Height (in) <input id="hInp" step="0.25" type="number"/></label>
+<label>Color <input id="colInp" type="color"/></label>
+<label>Transparency (α) <input id="alphaInp" max="1" min="0" step="0.05" type="range"/></label>
+<button id="delObj" style="background:#fecaca">🗑 Delete</button>
+<label>Notes <input id="noteInp" type="text"/></label>
+<div style="display:flex;flex-wrap:wrap;gap:4px"><span style="font-size:.8rem;color:#475569">Quick Colors:</span><button class="presetColor" data-color="#9ca3af" style="background:#9ca3af;width:20px;height:20px;border:1px solid #ccc;border-radius:4px" title="Metal/Neutral Gray" type="button"></button><button class="presetColor" data-color="#d97706" style="background:#d97706;width:20px;height:20px;border:1px solid #ccc;border-radius:4px" title="Wood" type="button"></button><button class="presetColor" data-color="#2563eb" style="background:#2563eb;width:20px;height:20px;border:1px solid #ccc;border-radius:4px" title="Plastic/Blue" type="button"></button><button class="presetColor" data-color="#16a34a" style="background:#16a34a;width:20px;height:20px;border:1px solid #ccc;border-radius:4px" title="Green/Fabric" type="button"></button><button class="presetColor" data-color="#dc2626" style="background:#dc2626;width:20px;height:20px;border:1px solid #ccc;border-radius:4px" title="Important/Alert" type="button"></button><button class="presetColor" data-color="#facc15" style="background:#facc15;width:20px;height:20px;border:1px solid #ccc;border-radius:4px" title="Caution/Label" type="button"></button><button class="presetColor" data-color="#9333ea" style="background:#9333ea;width:20px;height:20px;border:1px solid #ccc;border-radius:4px" title="Electronics" type="button"></button><button class="presetColor" data-color="#f59e0b" style="background:#f59e0b;width:20px;height:20px;border:1px solid #ccc;border-radius:4px" title="Cardboard/Boxes" type="button"></button></div>
+<label style="font-size:.85rem;color:#0f172a;display:flex;align-items:center;gap:.5rem">
+<input checked="" id="rulerToggle" type="checkbox"/> Show Ruler/Grid Labels
+</label>
+</div><div id="inventorySheet" style="margin-top:1rem; display:none; max-height:180px; overflow:auto; border:1px solid #e2e8f0; border-radius:4px; padding:.25rem;"></div></div></div></div>
 <script>
 /***** ── Constants & geometry ── *****/
 const SCALE = 5;                     // 1 inch → 5 pixels
@@ -81,7 +107,7 @@ const DOOR_W_PX = DOOR_W_IN * SCALE, DOOR_H_PX = DOOR_H_IN * SCALE;
 const DOOR_X = 0, DOOR_Y = CLOSET_H_PX;
 
 /***** ── Helper utilities ── *****/
-const make = (label,w,h,x,y,color) => ({
+const make = (label,w,h,x,y,color) => ({ note: '',
   id: crypto.randomUUID(),
   label,
   w: w * SCALE,
@@ -154,12 +180,33 @@ function draw(){
   for(let x=0;x<=CLOSET_W_PX;x+=60){ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,CLOSET_H_PX); ctx.stroke();}
   for(let y=0;y<=CLOSET_H_PX;y+=60){ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(CLOSET_W_PX,y); ctx.stroke();}
 
-  // zone labels & measurement reference
+  
+  if (document.getElementById('rulerToggle').checked) {
+    ctx.fillStyle = '#1e293b';
+    ctx.font = '10px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    for (let x = PILLAR; x <= UNIT_W - PILLAR; x += 60) {
+      ctx.fillText(`${inch(x).toFixed(0)}″`, x, CLOSET_H_PX + 2);
+    }
+    ctx.textAlign = 'right';
+    for (let y = CLOSET_H_PX; y <= CANVAS_H; y += 60) {
+      ctx.fillText(`${inch(y - CLOSET_H_PX).toFixed(0)}″`, UNIT_W - 4, y + 2);
+
+  
+
+    }
+
+  
+
+  }
+
+
+// zone labels & measurement reference
   ctx.fillStyle='#1e293b'; ctx.font='bold 16px sans-serif';
   ctx.fillText('CLOSET', CLOSET_W_PX/2, CLOSET_H_PX/2);
   ctx.fillText('BEDROOM', UNIT_W/2, CLOSET_H_PX + UNIT_H/2);
-  ctx.strokeStyle='#000'; ctx.lineWidth=4;
-  ctx.beginPath(); ctx.moveTo(0,CLOSET_H_PX); ctx.lineTo(MEAS_HORZ_IN*SCALE, CLOSET_H_PX); ctx.stroke();
+  
   ctx.beginPath(); ctx.moveTo(0,CLOSET_H_PX); ctx.lineTo(0, CLOSET_H_PX + MEAS_VERT_IN*SCALE); ctx.stroke();
 
   // reference red bars (requested markers)
@@ -182,12 +229,183 @@ function draw(){
 
     ctx.fillStyle='#000'; ctx.font='12px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
     const lines = [it.label, dimsTxt(it)];
-    lines.forEach((ln,i)=> ctx.fillText(ln, 0, (i-(lines.length-1)/2)*14));
+    
+lines.forEach((ln,i)=> ctx.fillText(ln, 0, (i-(lines.length-1)/2)*14));
+if (document.getElementById("noteToggle").checked && it.note) {
+  ctx.fillText(it.note, 0, ((lines.length + 1) * 14));
+}
+
+    if (document.getElementById("noteToggle").checked && it.note) {
+  
+}
+
+    if (it.note) {
+      
+    }
+
+    if (it.note) {
+      
+    }
+
 
     ctx.restore();
   }
 
-  updateSpace();
+  // Closet measurement reference lines (overlaid and clearly visible)
+  if (document.getElementById('rulerToggle').checked) {
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = 2;
+
+    // Horizontal measurement line at top of closet
+    ctx.beginPath();
+    ctx.moveTo(PILLAR, CLOSET_H_PX - 8);
+    ctx.lineTo(PILLAR + MEAS_HORZ_IN * SCALE, CLOSET_H_PX - 8);
+    ctx.stroke();
+
+    // Vertical measurement line at left of closet
+    ctx.beginPath();
+    ctx.moveTo(PILLAR - 8, CLOSET_H_PX);
+    ctx.lineTo(PILLAR - 8, CLOSET_H_PX + MEAS_VERT_IN * SCALE);
+    ctx.stroke();
+  }
+
+
+  // Feet axis labels for left (Y) and bottom (X)
+  if (document.getElementById('rulerToggle').checked) {
+    ctx.fillStyle = '#1e293b';
+    ctx.font = '10px sans-serif';
+
+    // Left (feet)
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    for (let y = CLOSET_H_PX; y <= CANVAS_H; y += SCALE * 12) {
+      ctx.fillText(`${((y - CLOSET_H_PX)/SCALE/12).toFixed(0)}′`, PILLAR - 4, y);
+    }
+
+    // Bottom (feet)
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    for (let x = PILLAR; x <= UNIT_W - PILLAR; x += SCALE * 12) {
+      ctx.fillText(`${(x/SCALE/12).toFixed(0)}′`, x, CANVAS_H - PILLAR + 4);
+    }
+
+    // Unit Labels
+    ctx.font = 'bold 11px sans-serif';
+    ctx.save();
+    ctx.translate(PILLAR - 20, CLOSET_H_PX + UNIT_H / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.restore();
+
+    ctx.fillText('feet ↓', UNIT_W / 2, CANVAS_H - PILLAR + 16);
+    ctx.save();
+    ctx.translate(PILLAR - 28, CLOSET_H_PX + UNIT_H / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText('feet ↓', 0, 0);
+    ctx.restore();
+  }
+
+
+  
+
+
+  // Feet axis labels for left (Y) and bottom (X)
+  if (document.getElementById('rulerToggle').checked) {
+    ctx.fillStyle = '#1e293b';
+    ctx.font = '10px sans-serif';
+
+    // Left (feet)
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    for (let y = CLOSET_H_PX; y <= CANVAS_H; y += SCALE * 12) {
+      ctx.fillText(`${((y - CLOSET_H_PX)/SCALE/12).toFixed(0)}′`, PILLAR - 4, y);
+    }
+
+    // Bottom (feet)
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    for (let x = PILLAR; x <= UNIT_W - PILLAR; x += SCALE * 12) {
+      ctx.fillText(`${(x/SCALE/12).toFixed(0)}′`, x, CANVAS_H - PILLAR + 4);
+    }
+
+    // Unit Labels
+    ctx.font = 'bold 11px sans-serif';
+    ctx.save();
+    ctx.translate(PILLAR - 20, CLOSET_H_PX + UNIT_H / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.restore();
+
+    ctx.fillText('feet ↓', UNIT_W / 2, CANVAS_H - PILLAR + 16);
+    ctx.save();
+    ctx.translate(PILLAR - 28, CLOSET_H_PX + UNIT_H / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText('feet ↓', 0, 0);
+    ctx.restore();
+  }
+
+
+  
+  // --- Optional: Show distances from selected object to others ---
+  if (selected && document.getElementById('gapToggle').checked) {
+    ctx.strokeStyle = '#10b981'; // green
+    ctx.fillStyle = '#064e3b';
+    ctx.font = '12px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+
+    const selDims = dims(selected);
+    const selRight = selected.x + selDims.w;
+    const selBottom = selected.y + selDims.h;
+
+    for (const it of items) {
+      if (it === selected) continue;
+      const itDims = dims(it);
+      const itRight = it.x + itDims.w;
+      const itBottom = it.y + itDims.h;
+
+      // Horizontal spacing (if vertically aligned)
+      const vertOverlap = Math.max(0, Math.min(selected.y + selDims.h, it.y + itDims.h) - Math.max(selected.y, it.y));
+      if (vertOverlap > 10) {
+        if (it.x >= selRight) {
+          const gap = it.x - selRight;
+          ctx.beginPath();
+          ctx.moveTo(selRight, selected.y + selDims.h / 2);
+          ctx.lineTo(it.x, it.y + itDims.h / 2);
+          ctx.stroke();
+          ctx.fillText(`${inch(gap).toFixed(1)}″`, (selRight + it.x) / 2, selected.y + selDims.h / 2 - 4);
+        } else if (selected.x >= itRight) {
+          const gap = selected.x - itRight;
+          ctx.beginPath();
+          ctx.moveTo(itRight, it.y + itDims.h / 2);
+          ctx.lineTo(selected.x, selected.y + selDims.h / 2);
+          ctx.stroke();
+          ctx.fillText(`${inch(gap).toFixed(1)}″`, (itRight + selected.x) / 2, selected.y + selDims.h / 2 - 4);
+        }
+      }
+
+      // Vertical spacing (if horizontally aligned)
+      const horizOverlap = Math.max(0, Math.min(selRight, itRight) - Math.max(selected.x, it.x));
+      if (horizOverlap > 10) {
+        if (it.y >= selBottom) {
+          const gap = it.y - selBottom;
+          ctx.beginPath();
+          ctx.moveTo(selected.x + selDims.w / 2, selBottom);
+          ctx.lineTo(it.x + itDims.w / 2, it.y);
+          ctx.stroke();
+          ctx.fillText(`${inch(gap).toFixed(1)}″`, selected.x + selDims.w / 2, (selBottom + it.y) / 2 - 4);
+        } else if (selected.y >= itBottom) {
+          const gap = selected.y - itBottom;
+          ctx.beginPath();
+          ctx.moveTo(it.x + itDims.w / 2, itBottom);
+          ctx.lineTo(selected.x + selDims.w / 2, selected.y);
+          ctx.stroke();
+          ctx.fillText(`${inch(gap).toFixed(1)}″`, selected.x + selDims.w / 2, (itBottom + selected.y) / 2 - 4);
+        }
+      }
+    }
+  }
+updateSpace();
+drawMeasurement();
+drawWalkwayViolations();
 }
 
 /***** ── Space calculation ── *****/
@@ -213,7 +431,8 @@ function moveItem(idx,dir){
   if(newIdx < 0 || newIdx >= items.length) return;
   const [it] = items.splice(idx,1);
   items.splice(newIdx,0,it);
-  refreshList(); draw();
+  refreshList(); if (document.getElementById("walkwayLiveToggle").checked) drawWalkwayViolations(true);
+draw();
 }
 
 function refreshList(){
@@ -233,7 +452,8 @@ function refreshList(){
     li.appendChild(row);
     const dim = document.createElement('span'); dim.className='dim'; dim.textContent = dimsTxt(it); li.appendChild(dim);
 
-    li.onclick = ()=>{ selected = it; refreshList(); updateEditor(); draw(); };
+    li.onclick = ()=>{ selected = it; refreshList(); updateEditor(); if (document.getElementById("walkwayLiveToggle").checked) drawWalkwayViolations(true);
+draw(); };
     listEl.appendChild(li);
   });
 }
@@ -255,7 +475,8 @@ function applyChanges(){
   selected.h     = parseFloat(hInp.value||0) * SCALE;
   selected.color = colInp.value;
   selected.alpha = parseFloat(alphaInp.value);
-  draw(); refreshList();
+  if (document.getElementById("walkwayLiveToggle").checked) drawWalkwayViolations(true);
+draw(); refreshList();
 }
 [nameInp,wInp,hInp,colInp,alphaInp].forEach(inp=> inp.oninput = applyChanges);
 
@@ -263,7 +484,8 @@ document.getElementById('delObj').onclick = () => {
   if(!selected) return;
   items = items.filter(it=> it!==selected);
   selected = null;
-  refreshList(); updateEditor(); draw();
+  refreshList(); updateEditor(); if (document.getElementById("walkwayLiveToggle").checked) drawWalkwayViolations(true);
+draw();
 };
 
 document.getElementById('addObj').onclick = () => {
@@ -271,7 +493,8 @@ document.getElementById('addObj').onclick = () => {
   base.alpha = 0.8;
   items.push(base);
   selected = base;
-  refreshList(); updateEditor(); draw();
+  refreshList(); updateEditor(); if (document.getElementById("walkwayLiveToggle").checked) drawWalkwayViolations(true);
+draw();
 };
 
 /***** ── Drag & hit‑testing ── *****/
@@ -298,7 +521,8 @@ canvas.addEventListener('pointerdown',e=>{
       break;
     }
   }
-  refreshList(); updateEditor(); draw();
+  refreshList(); updateEditor(); if (document.getElementById("walkwayLiveToggle").checked) drawWalkwayViolations(true);
+draw();
 });
 
 canvas.addEventListener('pointermove',e=>{
@@ -314,7 +538,8 @@ canvas.addEventListener('pointermove',e=>{
 
   selected.x = Math.min(Math.max(nx, minX), maxX);
   selected.y = Math.min(Math.max(ny, minY), maxY);
-  draw();
+  if (document.getElementById("walkwayLiveToggle").checked) drawWalkwayViolations(true);
+draw();
 });
 window.addEventListener('pointerup',()=> drag = false);
 
@@ -340,7 +565,7 @@ saveLayout.onclick = ()=>{
     y_in:inch(it.y),
     color:it.color,
     angle:it.angle,
-    alpha:it.alpha
+    alpha:it.alpha, note:it.note || ""
   })),null,2);
   const blob = new Blob([json],{type:'application/json'});
   const url  = URL.createObjectURL(blob);
@@ -372,20 +597,457 @@ fileInput.onchange = e =>{
       (+o.y_in || 0)*SCALE,
       o.color || '#ddd'
     ));
-    items.forEach((it,i)=>{
+    items.forEach((it,i)=>{ it.note = arr[i].note || "";
       it.angle = +arr[i].angle || 0;
       it.alpha = arr[i].alpha ?? 1;
     });
 
     selected = null;
-    refreshList(); updateEditor(); draw();
+    refreshList(); updateEditor(); if (document.getElementById("walkwayLiveToggle").checked) drawWalkwayViolations(true);
+draw();
   };
   reader.readAsText(file);
   fileInput.value = '';
 };
 
 /***** ── Kick everything off ── *****/
-refreshList(); draw();
+refreshList(); if (document.getElementById("walkwayLiveToggle").checked) drawWalkwayViolations(true);
+draw();
+
+// --- Preset color buttons ---
+document.querySelectorAll(".presetColor").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (selected) {
+      selected.color = btn.dataset.color;
+      colInp.value = btn.dataset.color;
+      if (document.getElementById("walkwayLiveToggle").checked) drawWalkwayViolations(true);
+draw();
+      refreshList();
+    }
+  });
+});
+
+// Add note field to object model and editor
+const noteInp = document.getElementById('noteInp');
+noteInp.oninput = () => {
+  if (selected) {
+    selected.note = noteInp.value.trim();
+    if (document.getElementById("walkwayLiveToggle").checked) drawWalkwayViolations(true);
+draw();
+  }
+};
+
+function updateEditor(){
+  if(!selected){ editBox.style.display='none'; return; }
+  editBox.style.display='flex';
+  nameInp.value  = selected.label;
+  wInp.value     = inch(selected.w).toFixed(2);
+  hInp.value     = inch(selected.h).toFixed(2);
+  colInp.value   = selected.color;
+  alphaInp.value = selected.alpha;
+  noteInp.value  = selected.note || '';
+}
+
+// --- Redraw on note toggle ---
+document.getElementById("noteToggle").addEventListener("change", draw);
+
+
+let measureStart = null;
+let measureEnd = null;
+let measuring = false;
+
+canvas.addEventListener("pointerdown", e => {
+  if (!document.getElementById("measureToggle").checked) return;
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  if (!measuring) {
+    measureStart = {x, y};
+    measureEnd = null;
+    measuring = true;
+  } else {
+    measureEnd = {x, y};
+    measuring = false;
+    if (document.getElementById("walkwayLiveToggle").checked) drawWalkwayViolations(true);
+draw();
+  }
+});
+
+function drawMeasurement() {
+  if (!document.getElementById("measureToggle").checked) return;
+  if (!measureStart || !measureEnd) return;
+
+  const dx = measureEnd.x - measureStart.x;
+  const dy = measureEnd.y - measureStart.y;
+  const distPx = Math.sqrt(dx*dx + dy*dy);
+  const distIn = inch(distPx);
+  const distFt = distIn / 12;
+
+  ctx.strokeStyle = "#dc2626";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(measureStart.x, measureStart.y);
+  ctx.lineTo(measureEnd.x, measureEnd.y);
+  ctx.stroke();
+
+  ctx.fillStyle = "#000";
+  ctx.font = "12px sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "bottom";
+  ctx.fillText(`${distIn.toFixed(1)}″ (${distFt.toFixed(2)}′)`,
+               (measureStart.x + measureEnd.x) / 2,
+               (measureStart.y + measureEnd.y) / 2 - 6);
+}
+
+
+function drawWalkwayViolations(live = false) {
+  if (!document.getElementById("walkwayToggle").checked && !live) return;
+  const minGapIn = parseFloat(document.getElementById("walkwayMin").value || "0");
+  const minGapPx = minGapIn * SCALE;
+
+  ctx.strokeStyle = "#f97316";
+  ctx.lineWidth = 2;
+  ctx.setLineDash([5, 3]);
+
+  for (let i = 0; i < items.length; i++) {
+    const a = items[i];
+    const ad = dims(a);
+    const ax1 = a.x, ax2 = a.x + ad.w, ay1 = a.y, ay2 = a.y + ad.h;
+
+    for (let j = i + 1; j < items.length; j++) {
+      const b = items[j];
+      const bd = dims(b);
+      const bx1 = b.x, bx2 = b.x + bd.w, by1 = b.y, by2 = b.y + bd.h;
+
+      const overlapX = Math.max(0, Math.min(ax2, bx2) - Math.max(ax1, bx1));
+      const overlapY = Math.max(0, Math.min(ay2, by2) - Math.max(ay1, by1));
+
+      if (overlapY > 0) {
+        if (ax2 < bx1 && (bx1 - ax2) < minGapPx) {
+          const y = (Math.max(ay1, by1) + Math.min(ay2, by2)) / 2;
+          ctx.beginPath(); ctx.moveTo(ax2, y); ctx.lineTo(bx1, y); ctx.stroke();
+        }
+        if (bx2 < ax1 && (ax1 - bx2) < minGapPx) {
+          const y = (Math.max(ay1, by1) + Math.min(ay2, by2)) / 2;
+          ctx.beginPath(); ctx.moveTo(bx2, y); ctx.lineTo(ax1, y); ctx.stroke();
+        }
+      }
+
+      if (overlapX > 0) {
+        if (ay2 < by1 && (by1 - ay2) < minGapPx) {
+          const x = (Math.max(ax1, bx1) + Math.min(ax2, bx2)) / 2;
+          ctx.beginPath(); ctx.moveTo(x, ay2); ctx.lineTo(x, by1); ctx.stroke();
+        }
+        if (by2 < ay1 && (ay1 - by2) < minGapPx) {
+          const x = (Math.max(ax1, bx1) + Math.min(ax2, bx2)) / 2;
+          ctx.beginPath(); ctx.moveTo(x, by2); ctx.lineTo(x, ay1); ctx.stroke();
+        }
+      }
+    }
+  }
+
+  ctx.setLineDash([]);
+}
+
+
+document.getElementById("exportInventory").addEventListener("click", () => {
+  const container = document.getElementById("inventorySheet");
+  container.innerHTML = "";
+
+  const table = document.createElement("table");
+  table.style.borderCollapse = "collapse";
+  table.style.width = "100%";
+  table.style.marginTop = "0.5rem";
+
+  const headers = ["Label", "Width (in)", "Height (in)", "Color", "Notes"];
+  const thead = document.createElement("thead");
+  const headRow = document.createElement("tr");
+  headers.forEach(h => {
+    const th = document.createElement("th");
+    th.textContent = h;
+    th.style.border = "1px solid #ccc";
+    th.style.padding = "4px";
+    th.style.background = "#f1f5f9";
+    headRow.appendChild(th);
+  });
+  thead.appendChild(headRow);
+  table.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+  items.forEach(it => {
+    const row = document.createElement("tr");
+    const dims = it => {
+      const scale = 1 / SCALE;
+      return {
+        w: it.w * scale,
+        h: it.h * scale
+      };
+    };
+    const d = dims(it);
+    const cells = [
+      it.label || "",
+      inch(it.w).toFixed(1),
+      inch(it.h).toFixed(1),
+      it.color || "",
+      it.note || ""
+    ];
+    
+    cells.forEach((text, idx) => {
+      const td = document.createElement("td");
+      if (idx === 3) {
+        td.innerHTML = `<span style='display:inline-block;width:100%;background:${text};padding:2px;border-radius:2px;color:#0f172a;text-align:center;font-size:.75rem'>${text}</span>`;
+      } else {
+        td.textContent = text;
+      }
+      td.style.border = "1px solid #ccc";
+      td.style.padding = "4px";
+      row.appendChild(td);
+    });
+
+    tbody.appendChild(row);
+  });
+  table.appendChild(tbody);
+  container.appendChild(table);
+  container.style.display = "block";
+});
+
+
+document.getElementById("rulerToggle").addEventListener("change", () => {
+  draw();
+});
+
+
+document.getElementById("downloadInventory").addEventListener("click", () => {
+  const w = window.open("", "_blank");
+  const rows = items.map(it => {
+    const colorCell = `<td><div style='background:${it.color};padding:4px;border-radius:3px;text-align:center;'>${it.color}</div></td>`;
+    return `
+      <tr>
+        <td>${it.label || ""}</td>
+        <td>${inch(it.w).toFixed(1)}</td>
+        <td>${inch(it.h).toFixed(1)}</td>
+        ${colorCell}
+        <td>${it.note || ""}</td>
+      </tr>
+    `;
+  }).join("");
+
+  const html = `
+    <html>
+    <head>
+      <title>Inventory Sheet</title>
+      <style>
+        body { font-family: sans-serif; padding: 2rem; }
+        table { border-collapse: collapse; width: 100%; font-size: 12px; }
+        th, td { border: 1px solid #ccc; padding: 4px; }
+        th { background: #f1f5f9; }
+        h2 { margin-bottom: 1rem; }
+      </style>
+    </head>
+    <body>
+      <h2>Inventory Sheet</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Label</th><th>Width (in)</th><th>Height (in)</th><th>Color</th><th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </body>
+    </html>
+  `;
+
+  w.document.write(html);
+  w.document.close();
+});
+
+document.getElementById("exportInventory").addEventListener("click", () => {
+  const container = document.getElementById("inventorySheet");
+  container.innerHTML = "";
+
+  const table = document.createElement("table");
+  table.style.borderCollapse = "collapse";
+  table.style.width = "100%";
+
+  const headers = ["Label", "Width (in)", "Height (in)", "Color", "Notes"];
+  const thead = document.createElement("thead");
+  const headRow = document.createElement("tr");
+  headers.forEach(h => {
+    const th = document.createElement("th");
+    th.textContent = h;
+    th.style.border = "1px solid #ccc";
+    th.style.padding = "4px";
+    th.style.background = "#f1f5f9";
+    th.style.fontSize = "12px";
+    headRow.appendChild(th);
+  });
+  thead.appendChild(headRow);
+  table.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+  items.forEach(it => {
+    const row = document.createElement("tr");
+    const cells = [
+      it.label || "",
+      inch(it.w).toFixed(1),
+      inch(it.h).toFixed(1),
+      it.color || "",
+      it.note || ""
+    ];
+    cells.forEach((text, idx) => {
+      const td = document.createElement("td");
+      td.style.border = "1px solid #ccc";
+      td.style.padding = "4px";
+      td.style.fontSize = "11px";
+      if (idx === 3) {
+        td.innerHTML = `<span style='display:inline-block;width:100%;background:${text};padding:2px;border-radius:2px;color:#0f172a;text-align:center;'>${text}</span>`;
+      } else {
+        td.textContent = text;
+      }
+      row.appendChild(td);
+    });
+    tbody.appendChild(row);
+  });
+  table.appendChild(tbody);
+  container.appendChild(table);
+  container.style.display = "block";
+  document.getElementById("downloadInventory").disabled = false;
+});
+
+document.getElementById("downloadInventory").addEventListener("click", () => {
+  if (!items || items.length === 0) {
+    alert("No inventory items to export.");
+    return;
+  }
+
+  let text = "Inventory Sheet\n\n";
+  for (const it of items) {
+    text += `Label: ${it.label || ""}\n`;
+    text += `Width: ${inch(it.w).toFixed(1)} in\n`;
+    text += `Height: ${inch(it.h).toFixed(1)} in\n`;
+    text += `Color: ${it.color || ""}\n`;
+    text += `Notes: ${it.note || ""}\n`;
+    text += "-----------------------------\n";
+  }
+
+  const blob = new Blob([text], { type: "text/plain" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "InventorySheet.txt";
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+
+let canvasZoom = 1;
+let panX = 0;
+let panY = 0;
+let isPanning = false;
+let startX = 0;
+let startY = 0;
+
+function redrawCanvas() {
+  ctx.setTransform(canvasZoom, 0, 0, canvasZoom, panX, panY);
+  ctx.clearRect(-panX / canvasZoom, -panY / canvasZoom, canvas.width / canvasZoom, canvas.height / canvasZoom);
+  originalDraw();
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+}
+
+document.getElementById("zoomIn").addEventListener("click", () => {
+  canvasZoom = Math.min(3, canvasZoom + 0.1);
+  redrawCanvas();
+});
+document.getElementById("zoomOut").addEventListener("click", () => {
+  canvasZoom = Math.max(0.2, canvasZoom - 0.1);
+  redrawCanvas();
+});
+document.getElementById("zoomReset").addEventListener("click", () => {
+  canvasZoom = 1;
+  panX = 0;
+  panY = 0;
+  redrawCanvas();
+});
+
+canvas.addEventListener("mousedown", (e) => {
+  if (canvasZoom <= 1) return;
+  isPanning = true;
+  startX = e.clientX;
+  startY = e.clientY;
+});
+canvas.addEventListener("mousemove", (e) => {
+  if (!isPanning) return;
+  panX += (e.clientX - startX);
+  panY += (e.clientY - startY);
+  startX = e.clientX;
+  startY = e.clientY;
+  redrawCanvas();
+});
+canvas.addEventListener("mouseup", () => { isPanning = false; });
+canvas.addEventListener("mouseleave", () => { isPanning = false; });
+
+// Safe override after base script loads
+window.addEventListener("load", () => {
+  if (typeof draw === "function") {
+    window.originalDraw = draw;
+    draw = () => redrawCanvas();
+    draw();
+  }
+});
+
+
+// Prevent drag-object interference while panning or zoomed
+const origMouseDown = canvas.onmousedown;
+const origMouseMove = canvas.onmousemove;
+const origMouseUp = canvas.onmouseup;
+
+canvas.onmousedown = (e) => {
+  if (canvasZoom > 1) {
+    isPanning = true;
+    startX = e.clientX;
+    startY = e.clientY;
+  } else if (typeof origMouseDown === "function") {
+    origMouseDown(e);
+  }
+};
+
+canvas.onmousemove = (e) => {
+  if (isPanning) {
+    panX += (e.clientX - startX);
+    panY += (e.clientY - startY);
+    startX = e.clientX;
+    startY = e.clientY;
+    redrawCanvas();
+  } else if (typeof origMouseMove === "function" && canvasZoom === 1) {
+    origMouseMove(e);
+  }
+};
+
+canvas.onmouseup = (e) => {
+  isPanning = false;
+  if (canvasZoom === 1 && typeof origMouseUp === "function") {
+    origMouseUp(e);
+  }
+};
+canvas.addEventListener("mouseleave", () => {
+  isPanning = false;
+});
+
+
+const isLocked = () => document.getElementById("lockObjects")?.checked === true;
+
+// Intercept only hit selection if locked
+const realHit = hit;
+hit = function(obj, x, y) {
+  if (isLocked()) return false;
+  return realHit(obj, x, y);
+};
+
+// Suppress drag apply if locked
+const originalPointerMove = canvas.onpointermove;
+canvas.addEventListener("pointermove", e => {
+  if (!isLocked() && typeof originalPointerMove === "function") originalPointerMove(e);
+});
 </script>
-</body>
-</html>
+</body></html>
